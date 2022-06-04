@@ -41,28 +41,14 @@ let possibleLevels = {
 };
 
 //игровое поле
-let playfield = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-];
+let playfield = [];
+//заполняем массив 0
+for (let row = 0; row < 20; row++) {
+    playfield[row] = [];
+    for (let col = 0; col < 10; col++) {
+        playfield[row][col] = 0;
+    }
+}
 
 //возможные фигуры
 let figures = {
@@ -304,30 +290,15 @@ function reset() {
     //сбрасываем таймер
     clearTimeout(gameTimerID);
     //рисуем чистое поле
-    playfield = [
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    ];
+    for (let row = 0; row < 20; row++) {
+        playfield[row] = [];
+        for (let col = 0; col < 10; col++) {
+            playfield[row][col] = 0;
+        }
+    }
     draw(); //рисуем новое игровое поле
     gameOver.style.display = 'block'; //отображаем Game Over
+    startBtn.disabled = false //активируем кнопку старта
 }
 
 //функция обновления состояния игрового поля
@@ -371,7 +342,7 @@ document.onkeydown = function (e) {
 };
 
 //ставим игру на паузу по кнопке
-pauseBtn.addEventListener('click', (e) => {
+pauseBtn.addEventListener('mousedown', (e) => {
     if (e.target.innerHTML === 'Pause') {
         e.target.innerHTML = 'Continue'; //после нажатия кнопки меняем ее название с Pause на Continue
         clearTimeout(gameTimerID); //останавливаем таймер
@@ -384,10 +355,15 @@ pauseBtn.addEventListener('click', (e) => {
 
 //начинаем игру по кнопке старта
 startBtn.addEventListener('click', (e) => {
-    e.target.innerHTML = 'Start Again'; //меняем название кнопки
+    //e.target.innerHTML = 'Start Again'; //меняем название кнопки
+    score = 0 //обнуляем счет
+    currentLevel = 1 //обнуляем уровень
+    scoreElem.innerHTML = score; //кидаем текущие очки в игре в html
+    levelElem.innerHTML = currentLevel; //кидаем текущий уровень в игре в html
     gameTimerID = setTimeout(startGame, possibleLevels[currentLevel].speed); //запускаем таймер
     isPaused = false; //убираем флаг паузы игры
     gameOver.style.display = 'none'; //убираем отображение Game Over
+    startBtn.disabled = true //блокируем кнопку старта после запуска, чтобы не запускать миллион таймеров
 });
 
 scoreElem.innerHTML = score; //кидаем текущие очки в игре в html

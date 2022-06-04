@@ -5,19 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tetris</title>
+    <link 
+     href="https://fonts.googleapis.com/css?family=Press+Start+2P" 
+    rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css">
     
 </head>
 <body>
-    <div id="game">
-        <div>Level: <span id="level">0</span></div>
-        <div>Score: <span id="score">0</span></div>
-        <div class="main"></div>
-        <div id="next-tetro"></div>
-        <button id="start">Start</button>
-        <button id="pause">Pause</button>
+    <div class="container">
+        <div id="game">
+            <div>Level: <span id="level">0</span></div>
+            <div>Score: <span id="score">0</span></div>
+            <div class="main"></div>
+            <div class="buttons">
+                <div class="start_container">
+                    <div class="start_button"><button id="start">Start</button></div>
+                </div>
+                <div class="pause_container">
+                    <div class="pause_button"><button id="pause">Pause</button></div>
+                </div>
+            </div>
+            <div class="info">
+                <div class="next-tetro">
+                    <div id="next-tetro"></div>
+                </div>
+                <div class="control">
+                    <div class="left"><span class="left_button"><div class="left_button_arrow"></div></span><span class="left_text">- Move left</span></div>
+                    <div class="right"><span class="right_button"><div class="right_button_arrow"></div></span><span class="right_text">- Move right</span></div>
+                    <div class="rotate"><span class="rotate_button"><div class="rotate_button_arrow"></div></span><span class="rotate_text">- Rotate</span></div>
+                    <div class="accelerate"><span class="accelerate_button"><div class="accelerate_button_arrow"></div></span><span class="accelerate_text">- Accelerate</span></div>
+                    <div class="drop"><span class="drop_button"><div class="drop_button_arrow"></div></span><span class="drop_text">- Drop</span></div>
+                </div>
+        </div>
+        </div>
+        <div id="game-over">Game Over</div>
     </div>
-    <div id="game-over">Game Over</div>
 </body>
 <script src="script.js"></script>
 </html>

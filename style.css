@@ -1,47 +1,47 @@
 *{
     box-sizing: border-box;
+    font-family: 'Press Start 2P', cursive;
 }
 
 body{
     margin: 0;
     background: black;
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 #game{
-    width: 320px;
+    width: 370px;
     margin: auto;
     padding-top: 20px;
-    font-size: 40px;
+    font-size: 36px;
+    position: relative;
 }
 
 .main{
-    width: 310px;
-    height: 610px;
+    width: 360px;
+    height: 710px;
     margin: 20px auto 0;
     border: 5px solid white;
     font-size: 0;
 }
 
 .cell{
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     border: 1px solid white;
     display: inline-block
 
 }
 
 .movingCell{
-    background-color: blue;
+    background-color: Crimson;
 }
 
 .fixedCell{
-    background-color: green;
+    background-color: DarkSlateBlue;
 }
 
 #next-tetro{
-    position: absolute;
     top: 200px;
     left: 200px;
     font-size: 0;
@@ -60,4 +60,109 @@ body{
     -moz-transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
+}
+
+.info{
+    width: 400px;
+    position: absolute;
+    top: 114px;
+    left: 390px;
+}
+
+.next-tetro{
+    border: 2px solid white;
+    width: 144px;
+    height: 144px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons{
+    display: flex;
+    margin-top: 15px;
+}
+
+.start_container{
+    width: 185px;
+    display: flex;
+    justify-content: center;
+}
+
+.pause_container{
+    width: 185px;
+    display: flex;
+    justify-content: center;
+}
+
+#start{
+    width: 100px;
+    height: 40px;
+}
+
+#pause{
+    width: 130px;
+    height: 40px;
+}
+
+.control{
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.left, .right, .rotate, .accelerate, .drop{
+    display: flex;
+}
+
+.control .left_button, .right_button, .rotate_button, .accelerate_button, .drop_button{
+    display: inline-block;
+    width: 70px;
+    height: 70px;
+    padding: 8px 15px;
+    margin: 8px 4px;
+    border-radius: 10px;
+    background: linear-gradient(180deg,#282828,#202020);
+    box-shadow: inset -8px 0 8px rgba(0,0,0,0.15),
+    inset 0 -8px 8px rgba(0,0,0,0.25),
+    0 0 0 2px rgba(0,0,0,0.75),
+    10px 20px 25px rgba(0,0,0,0.4);
+    overflow: hidden;
+}
+
+.drop_button{
+    width: 200px;
+}
+
+span .left_button_arrow, .right_button_arrow, .rotate_button_arrow, .accelerate_button_arrow {
+    width: 30px;
+    height: 30px;
+    border-top: 7px solid white;
+    border-right: 7px solid white;
+}    
+
+.left_button_arrow{
+    transform: rotate(-135deg);
+    margin-left: 11px;
+    margin-top: 12px;
+}
+
+.right_button_arrow{
+    transform: rotate(45deg);
+    margin-top: 12px;
+}
+
+.rotate_button_arrow{
+    transform: rotate(-45deg);
+    margin-left: 5px;
+    margin-top: 17px;
+}
+
+.accelerate_button_arrow{
+    transform: rotate(135deg);
+    margin-left: 5px;
+    margin-top: 6px;
+}
+
+.left_text, .right_text, .rotate_text, .accelerate_text, .drop_text {
+    margin: auto 15px;
 }
